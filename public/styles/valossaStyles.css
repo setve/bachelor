@@ -1,0 +1,26 @@
+button {
+    font-size: 16px;
+}
+
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    font-family: verdana, arial, helvetica, sans-serif;
+    color: #ccc;
+    background-color: #333;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.buttonContainer {
+    float: left;
+}

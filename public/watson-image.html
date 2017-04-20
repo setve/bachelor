@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Watson image test</title>
+    <link rel="stylesheet" type="text/css" href="styles/Watson-imageStyle.css"/>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+</head>
+<body>
+<script src="js/socket.io.js"></script>
+<div>
+
+    <img src="./media/HDR-Canon-Rebel-XT-Processing-Sample.jpg" id="image1" class="content">
+    <img src="./media/People-and-Faces-5.jpg" id="image2" class="content">
+    <img src="media/Lichtenstein_img_processing_test.png" id="image3" class="content">
+    <img hidden id="image4" src="#" class="content"/>
+    <input id="imageInput" type='file' onchange="readURL(this);" />
+    <h2 style="text-align: center">Image tags:</h2>
+    <div id ="text"></div>
+</div>
+
+
+    <script type="text/javascript" src="js/watson-recognition.js"></script>
+
+</body>
+</html>

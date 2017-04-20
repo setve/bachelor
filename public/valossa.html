@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Valossa API test</title>
+    <link rel="stylesheet" type="text/css" href="./styles/valossaStyles.css"/>
+</head>
+<body>
+<script src="js/socket.io.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
+<div id="currentVideo" width="704" height="480">
+</div>
+<br>
+<button id="startButton">Start analyzing</button>
+<button id="resultButton">Show results for the last video analyzed</button>
+<button id="statusButton">Show status</button>
+<br>
+<br>
+
+<div class="buttonContainer">
+    Youtube Link:<br>
+    <input type="text" id="link"/>
+    <br>
+    <input type="button" value="Set" id="setButton">
+</div>
+
+<div class="buttonContainer">
+    Video ID<br>
+    <input type="text" id="id">
+    <br>
+    <input type="button" value="Show result" id="setIdButton">
+</div>
+
+<div class="buttonContainer">
+    Search people:<br>
+    <input type="text" id="search"/>
+    <br>
+    <input type="button" value="Search" id="searchButton">
+</div>
+
+<script type="text/javascript" src="js/valossa.js"></script>
+<br>
+<br>
+<br>
+<div id="json">
+</div>
+
+</body>
+</html>

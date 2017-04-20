@@ -1,0 +1,46 @@
+button {
+    font-size: 16px;
+}
+
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    font-family: verdana, arial, helvetica, sans-serif;
+    color: #ccc;
+    background-color: #333;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.buttonContainer {
+    float: left;
+}
+
+.holder{
+    width: 1200px;
+    height:700px;
+    position:relative;
+}
+.frame{
+    width: 100%;
+    height:100%;
+}
+.bar{
+    pointer-events: none;
+    position:absolute;
+    right: auto;
+    bottom: auto;
+    top:0;
+    left:0;
+    width: 100% !important;
+    height: 100% !important;
+}

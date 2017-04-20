@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wirewax API test</title>
+    <link rel="stylesheet" type="text/css" href="./styles/wirewaxStyles.css"/>
+</head>
+<body>
+<div>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="js/socket.io.js"></script>
+    <div class="holder">
+        <canvas class="bar" id="myCanvas"></canvas>
+        <div id="player" class="frame">
+        </div>
+    </div>
+    <br>
+    <button id="startButton">Start analyzing</button>
+    <button id="getIdButton">Get a list of the Video Id</button>
+    <button id="toggleButton">Toggle facial tracking</button>
+</div>
+
+<br>
+<br>
+
+<div class="buttonContainer">
+    Youtube ID:<br>
+    <input type="text" id="link"/>
+    <br>
+    <input type="button" value="Set" id="setButton">
+</div>
+
+<div class="buttonContainer">
+    Video ID<br>
+    <input type="text" id="id">
+    <br>
+    <input type="button" value="Show result" id="setIdButton">
+</div>
+
+<div class="buttonContainer">
+    Video ID<br>
+    <input type="text" id="faceId">
+    <br>
+    <input type="button" value="Get facedata" id="faceButton">
+</div>
+
+<script type="text/javascript" src="js/wirewax.js"></script>
+<br>
+<br>
+<div id="json">
+    <h4>Results gotten: </h4>
+</div>
+
+</body>
+</html>
