@@ -6,6 +6,10 @@
     <link rel="stylesheet" type="text/css" href="./styles/wirewaxStyles.css"/>
 </head>
 <body>
+<header class="main-header">
+    <h2 style="float: left" onclick="location.href='/index.html';">Home</h2>
+    <h1>Valossa demo (beta shutdown)</h1>
+</header>
 <div>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="js/socket.io.js"></script>
@@ -15,6 +19,7 @@
         </div>
     </div>
     <br>
+
     <button id="startButton">Start analyzing</button>
     <button id="getIdButton">Get a list of the Video Id</button>
     <button id="toggleButton">Toggle facial tracking</button>
@@ -23,7 +28,7 @@
 <br>
 <br>
 
-<div class="buttonContainer">
+<div class="buttonContainer" style="margin-left: 8.5%">
     Youtube ID:<br>
     <input type="text" id="link"/>
     <br>
@@ -48,7 +53,8 @@
 <br>
 <br>
 <div id="json">
-    <h4>Results gotten: </h4>
+    <br>
+<h3>Result gotten:</h3>
 </div>
 
 </body>

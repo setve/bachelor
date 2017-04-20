@@ -89,10 +89,8 @@ function startUp() {
         videoId: 'T84se4fc4KU',
         events: {}
     });
-    localStorage.setItem("APIkey", "ABf7LrVE3gGN8x7n8tAjTzhtMDStGnUgY9nKyiqA")
-    if ((localStorage.getItem("ID"))) {
-        document.querySelector("#startButton").disabled = false;
-    }
+    localStorage.setItem("APIkey", "ABf7LrVE3gGN8x7n8tAjTzhtMDStGnUgY9nKyiqA");
+    localStorage.setItem('ID', '1bf4a9ac-e560-454f-8cb4-b8cf6e6709ff');
 }
 
 function showResult() {

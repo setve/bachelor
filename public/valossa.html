@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <title>Valossa API test</title>
     <link rel="stylesheet" type="text/css" href="./styles/valossaStyles.css"/>
+
+    <header class="main-header">
+        <h2 style="float: left" onclick="location.href='/index.html';">Home</h2>
+        <h1>Valossa demo (beta shutdown)</h1>
+    </header>
 </head>
+
 <body>
 <script src="js/socket.io.js"></script>
 <script src="https://www.youtube.com/iframe_api"></script>
@@ -17,7 +23,7 @@
 <br>
 <br>
 
-<div class="buttonContainer">
+<div class="buttonContainer" style="margin-left: 30%">
     Youtube Link:<br>
     <input type="text" id="link"/>
     <br>

@@ -22,6 +22,8 @@ socket.on('connected', function () {
 
 socket.on('gotResult', function (data) {
 
+    console.log(data);
+
     var json = JSON.parse(data.data)
     var tekst = document.createElement("p")
     tekst.innerHTML = JSON.stringify(json)
