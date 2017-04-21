@@ -8,6 +8,7 @@ var ffmpeg = require('fluent-ffmpeg');
 var VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var request = require('request')
+var values = require('./public/js/hardcodedValues')
 const Speech = require('@google-cloud/speech');
 
 const fs = require('fs');
@@ -220,8 +221,13 @@ io.on('connection', function (socket) {
 
     })
 //Valossa code
+    //Code that has been commented out has been done so because the beta we used was shut down. The data used is taken from the Valossa API before it shut down
     socket.on('getStatus', function (data) {
-        var xmlHttp = new XMLHttpRequest();
+        io.to(socket.id).emit('gotStatus', {
+            data: JSON.stringify(values.returnValues("getStatus"))
+
+        })
+        /*var xmlHttp = new XMLHttpRequest();
         xmlHttp.open("GET", data.data, true);
         xmlHttp.onreadystatechange = function () {
             if (xmlHttp.status == 200 && xmlHttp.readyState == 4) {
@@ -233,36 +239,46 @@ io.on('connection', function (socket) {
                 //console.log("ERROR", xmlHttp.responseText)
             }
         }
-        xmlHttp.send();
+        xmlHttp.send();*/
 
     })
 
     socket.on('startAnalyzing', function (data) {
 
-        var xmlHttp = new XMLHttpRequest();
+        io.to(socket.id).emit('doneAnalyzing', {
+            ID: '1bf4a9ac-e560-454f-8cb4-b8cf6e6709ff'
+        })
+
+        /*var xmlHttp = new XMLHttpRequest();
         xmlHttp.open("POST", "https://api.val.ai/core/deepmetadata/beta-v0.8/new_job", true);
 
         xmlHttp.onreadystatechange = function () {
             if (xmlHttp.status == 200) {
-                console.log("ferdig")
+                console.log(xmlHttp.responseText)
                 var json = JSON.parse(xmlHttp.responseText);
                 io.to(socket.id).emit('doneAnalyzing', {
-                    ID: json.job_id
+                    ID: 1bf4a9ac-e560-454f-8cb4-b8cf6e6709ff
                 })
                 console.log(json.job_id)
             } else {
                 console.log("ERROR", xmlHttp.response)
             }
         }
-        xmlHttp.send(data.data)
+        xmlHttp.send(data.data)*/
     })
 
     socket.on('showResult', function (data) {
-        console.log("start show")
+
+        io.to(socket.id).emit('gotResult', {
+            data: JSON.stringify(values.returnValues("showResult"))
+        })
+
+        /*console.log("start show")
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open("GET", data.data, true);
         xmlHttp.onreadystatechange = function () {
             if (xmlHttp.status == 200 && xmlHttp.readyState == 4) {
+                console.log(xmlHttp.responseText)
                 io.to(socket.id).emit('gotResult', {
                     data: xmlHttp.responseText
                 })
@@ -271,7 +287,7 @@ io.on('connection', function (socket) {
                 //console.log("ERROR", xmlHttp.responseText)
             }
         }
-        xmlHttp.send();
+        xmlHttp.send();*/
     })
 //Watson image code
     var visual_recognition = new VisualRecognitionV3({
