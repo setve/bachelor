@@ -28,7 +28,7 @@ socket.on('gotResult', function (data) {
     var tekst = document.createElement("p")
     tekst.innerHTML = JSON.stringify(json)
     document.querySelector("#json").appendChild(tekst)
-
+    showTimestampOnVideo(json)
 });
 
 socket.on('gotFaceResult', function (data) {
@@ -184,3 +184,9 @@ document.querySelector("#setIdButton").addEventListener('click', showResultID);
 document.querySelector("#toggleButton").addEventListener('click', () => {drawToggle = !drawToggle});
 window.addEventListener("load", startUp);
 window.addEventListener("load", setupCanvas);
+
+function showTimestampOnVideo(data) {
+    let time = parseInt(data['textKeywords'][49]['time']);
+    document.querySelector("#player").src = "https://www.youtube.com/embed/T84se4fc4KU?start=" + time;
+
+}
