@@ -3,6 +3,10 @@
     width: 1400px;
 }
 
+.main-header h2 {
+    cursor: pointer;
+}
+
 #startButton {
     margin-left: 8.5%;
 }

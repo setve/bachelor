@@ -162,7 +162,7 @@ io.on('connection', function (socket) {
                 else {
                     console.log("got normal result")
                     io.to(socket.id).emit('gotResult', {
-                        data: body
+                        data: JSON.parse(body)
                     })
                 }
             }
