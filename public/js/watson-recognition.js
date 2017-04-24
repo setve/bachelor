@@ -12,7 +12,7 @@ socket.on('retrievedInfo', function (data) {
     divElement.appendChild(listElement)
     for (var obj in data.res) {
         var text = document.createElement("li")
-        text.innerHTML =JSON.stringify("Tag: " + data.res[obj].class + ",   Score: " + data.res[obj].score).replace(/\"/g, "")
+        text.innerHTML = JSON.stringify("Tag: " + data.res[obj].class + ",   Score: " + data.res[obj].score).replace(/\"/g, "")
         listElement.appendChild(text)
     }
 });
@@ -36,7 +36,6 @@ function readURL(input) {
             })
         };
         reader.readAsDataURL(input.files[0]);
-
     }
 }
 

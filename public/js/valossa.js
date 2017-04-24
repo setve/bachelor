@@ -45,7 +45,6 @@ socket.on('gotResult', function (data) {
     for (var ele in json.detections) {
         if (json.detections[ele] != null && json.detections[ele].a && json.detections[ele].a.similar_to) {
             peopleArray[ele] = json.detections[ele]
-            //console.log(json.detections[ele])
         }
     }
     localStorage.setItem('people', JSON.stringify(peopleArray))
@@ -56,6 +55,7 @@ function skipTo(e) {
 }
 
 function searchPeople() {
+
     var searchResult = document.querySelector('#search').value.toLowerCase();
     var names = JSON.parse(localStorage.getItem('people'))
     var divElement = document.querySelector("#json")
@@ -95,6 +95,7 @@ function startUp() {
 }
 
 function showResult() {
+
     socket.emit('showResult', {
         data: "https://api.val.ai/core/deepmetadata/beta-v0.8/job_results?api_key=" + localStorage.getItem("APIkey") + "&job_id=" + localStorage.getItem("ID")
     })

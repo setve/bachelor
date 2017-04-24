@@ -8,7 +8,7 @@ var ffmpeg = require('fluent-ffmpeg');
 var VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var request = require('request')
-var values = require('./public/js/hardcodedValues')
+var values = require('./hardcodedValues')
 const Speech = require('@google-cloud/speech');
 
 const fs = require('fs');
