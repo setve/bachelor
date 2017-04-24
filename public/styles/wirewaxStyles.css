@@ -59,6 +59,14 @@ body {
     vertical-align: middle;
 }
 
+#json {
+    padding: 7%;
+}
+
+#json li {
+    list-style: none;
+}
+
 .buttonContainer {
     float: left;
 }
