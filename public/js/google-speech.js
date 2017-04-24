@@ -8,7 +8,7 @@ var pause = false;
 
 document.querySelector('#videoPlayer').addEventListener('play', translateAudio);
 document.querySelector('#videoPlayer').addEventListener('pause', onPause);
-window.addEventListener('unload', onPause);
+window.addEventListener('beforeunload', onPause);
 document.querySelector('#videoPlayer').seeked = skipping;
 
 socket.on('done', function (text) {
@@ -25,6 +25,7 @@ function skipping() {
 }
 
 function onPause() {
+    console.log("pause")
     socket.emit('pause')
 }
 
@@ -41,7 +42,7 @@ function translateAudio() {
     else {
         console.log("du forsatte spelinga")
         socket.emit('continue', {
-                src: "public/media/Steve Jobs Inspirational Speech - 1 Minute Motivation.mp4",
+                src: "public/media/Hagefest i Slottsparken- Velkomsttale - Kong Harald.mp4",
                 time: document.querySelector('#videoPlayer').currentTime
             }
         );
