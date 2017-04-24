@@ -22,10 +22,7 @@ socket.on('connected', function () {
 
 socket.on('gotResult', function (data) {
 
-    console.log("show result", data);
-
     var json = JSON.parse(data.data)
-    console.log(data)
     var tekst = document.createElement("p")
     tekst.innerHTML = JSON.stringify(json)
     document.querySelector("#json").appendChild(tekst)
@@ -33,7 +30,6 @@ socket.on('gotResult', function (data) {
 });
 
 socket.on('gotFaceResult', function (data) {
-    console.log("got face", data);
     var json = JSON.parse(data.data)
     localStorage.setItem('faceData', JSON.stringify(json.faces))
     var tekst = document.createElement("p")
@@ -121,14 +117,12 @@ function startUp() {
 }
 
 function getIdList() {
-    console.log("showind id")
     socket.emit('getIdList', {
         token: localStorage.getItem('token')
     })
 }
 
 function showResultID() {
-    console.log("show Result")
 
     var id = document.querySelector("#id").value;
 
@@ -139,7 +133,6 @@ function showResultID() {
 }
 
 function showFaceData() {
-    console.log("show Face")
 
     var id = document.querySelector("#faceId").value;
 
@@ -167,10 +160,7 @@ function setVideo() {
 }
 
 function showTimestampOnVideo(data) {
-    //let time = parseInt(data['textKeywords'][49]['time']);
-    console.log("URL", player.getVideoUrl())
     player.seekTo(2)
-
 }
 
 document.querySelector("#getIdButton").addEventListener('click', getIdList);

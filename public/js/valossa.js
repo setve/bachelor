@@ -6,7 +6,6 @@ var socket = io();
 var player;
 
 socket.on('doneAnalyzing', function (data) {
-    console.log("ferdig å senda videoen til analysering")
     localStorage.setItem("ID", data.ID)
 });
 
@@ -16,7 +15,6 @@ socket.on('connected', function () {
 
 socket.on('gotStatus', function (data) {
     var json = JSON.parse(data.data)
-    console.log('duidcbduwbuyo', json)
     var tekst = document.createElement("p")
     tekst.innerHTML = JSON.stringify(json.status)
     document.querySelector("#json").appendChild(tekst)
@@ -25,7 +23,6 @@ socket.on('gotStatus', function (data) {
 
 socket.on('gotResult', function (data) {
     var json = JSON.parse(data.data)
-    console.log(json)
 
     var text = document.createElement("p")
     text.innerHTML = 'Example of result from the analyzes: '
@@ -33,7 +30,7 @@ socket.on('gotResult', function (data) {
 
     for (a = 0; a <= 10; a++) {
         var text = document.createElement("p")
-        text.innerHTML = JSON.stringify(json.detections[a+1].label);
+        text.innerHTML = JSON.stringify(json.detections[a + 1].label);
         document.querySelector("#json").appendChild(text)
     }
 
@@ -45,7 +42,6 @@ socket.on('gotResult', function (data) {
         }
     }
     localStorage.setItem('people', JSON.stringify(peopleArray))
-    console.log(JSON.parse(localStorage.getItem('people')))
 });
 
 function skipTo(e) {
@@ -68,11 +64,11 @@ function searchPeople() {
             divElement.appendChild(text)
 
             ele.occs.forEach(function (time) {
-                var textTime = document.createElement("p")
-                textTime.onclick = skipTo
+                var textTime = document.createElement("p");
+                textTime.className = 'textTime'
+                textTime.onclick = skipTo;
                 textTime.innerHTML = JSON.stringify('In the time: ' + time.ss + 's')
-                textTime.id = "textTime"
-                textTime.value = time.ss
+                textTime.value = time.ss;
                 divElement.appendChild(textTime)
                 divElement.appendChild(document.createElement("br"))
 
@@ -91,15 +87,12 @@ function startUp() {
 }
 
 function showResult() {
-    console.log("show")
     socket.emit('showResult', {
         data: "https://api.val.ai/core/deepmetadata/beta-v0.8/job_results?api_key=" + localStorage.getItem("APIkey") + "&job_id=" + localStorage.getItem("ID")
     })
 }
 
 function showResultID() {
-    console.log("show Result")
-
     var id = document.querySelector("#id").value;
 
     socket.emit('showResult', {
@@ -108,37 +101,20 @@ function showResultID() {
 }
 
 function startAnalyzing() {
-    console.log("starta analysen")
 
     var data;
 
-    if (document.querySelector("#currentVideo").src == "https://www.youtube.com/embed/MeTQplAmuTU") {
-        data = JSON.stringify({
-            "api_key": localStorage.getItem("APIkey"), "media": {
-                "video": {
-                    "url": "https://www.youtube.com/watch?v=Rrw4eRzWBX4"
-
-                }
-
+    data = JSON.stringify({
+        "api_key": localStorage.getItem("APIkey"), "media": {
+            "video": {
+                "url": player.getVideoUrl()
             }
-        });
-    }
-    else {
-        data = JSON.stringify({
-            "api_key": localStorage.getItem("APIkey"), "media": {
-                "video": {
-                    "url": "https://www.youtube.com/watch?v=" + document.querySelector("#link").value
-
-                }
-
-            }
-        });
-    }
+        }
+    });
 
     socket.emit('startAnalyzing', {
         data: data
     })
-
 }
 
 function getStatus() {

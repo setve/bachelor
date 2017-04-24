@@ -13,7 +13,6 @@ document.querySelector('#videoPlayer').seeked = skipping;
 
 socket.on('done', function (text) {
     if (!(text.text === "")) {
-        console.log("dette er teksten: ", text.text)
         document.querySelector('#transcript').innerHTML = text.text
     }
 });
@@ -26,14 +25,12 @@ function skipping() {
 }
 
 function onPause() {
-    console.log("du pauset")
     socket.emit('pause')
 }
 
 function translateAudio() {
     if (pause == false) {
         pause = true;
-        console.log("star");
         socket.emit('translate', {
                 src: "public/media/Hagefest i Slottsparken- Velkomsttale - Kong Harald.mp4",
 
