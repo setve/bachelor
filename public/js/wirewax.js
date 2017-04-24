@@ -8,7 +8,6 @@ var player
 var drawToggle = false;
 
 socket.on('gotToken', function (data) {
-    console.log('Token', data.token);
     localStorage.setItem("token", data.token);
 })
 
@@ -22,7 +21,6 @@ socket.on('connected', function () {
 
 socket.on('gotResult', function (data) {
     var json = JSON.parse(data.data);
-    console.log(json);
     if(json['speechKeywords'] != null) {
         var heading = document.createElement("h3");
         heading.innerHTML = "Speech keywords";
@@ -31,8 +29,8 @@ socket.on('gotResult', function (data) {
         for(let i=0;i<length;i++){
             var text = document.createElement("li");
             text.innerHTML = json['speechKeywords'][i]['text'];
+            text.onclick = showTimestampOnVideo(json['speechKeywords'][i]['time'])
             document.querySelector("#json").appendChild(text);
-//8056206console.log(json['speechKeywords'][i]['text'],json['speechKeywords'][i]['time']);
         }
     }
     if(json['textKeywords'] != null){
@@ -42,11 +40,10 @@ socket.on('gotResult', function (data) {
         for(let i=0;i<length;i++){
             var text = document.createElement("li");
             text.innerHTML = json['textKeywords'][i]['text'];
+            text.onclick = showTimestampOnVideo(json['textKeywords'][i]['time'])
             document.querySelector("#json").appendChild(text);
-//8056206console.log(json['speechKeywords'][i]['text'],json['speechKeywords'][i]['time']);
         }
     }
-
 });
 
 socket.on('gotFaceResult', function (data) {

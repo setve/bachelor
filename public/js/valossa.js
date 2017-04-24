@@ -50,7 +50,7 @@ socket.on('gotResult', function (data) {
     localStorage.setItem('people', JSON.stringify(peopleArray))
 });
 
-function skipTo(e) {
+function skipTo(e)  {
     player.seekTo(e.valueOf().toElement.value)
 }
 
