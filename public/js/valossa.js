@@ -50,9 +50,6 @@ socket.on('gotResult', function (data) {
 
 function skipTo(e) {
     player.seekTo(e.valueOf().toElement.value)
-    console.log(e.valueOf().toElement.value)
-
-
 }
 
 function searchPeople() {

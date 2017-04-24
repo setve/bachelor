@@ -22,9 +22,10 @@ socket.on('connected', function () {
 
 socket.on('gotResult', function (data) {
 
-    console.log(data);
+    console.log("show result", data);
 
     var json = JSON.parse(data.data)
+    console.log(data)
     var tekst = document.createElement("p")
     tekst.innerHTML = JSON.stringify(json)
     document.querySelector("#json").appendChild(tekst)
@@ -116,12 +117,11 @@ function startUp() {
             'onStateChange': draw
         }
     });
-    console.log("Hallo")
     socket.emit('getToken', {})
 }
 
 function getIdList() {
-    console.log("show")
+    console.log("showind id")
     socket.emit('getIdList', {
         token: localStorage.getItem('token')
     })
@@ -151,20 +151,10 @@ function showFaceData() {
 
 function startAnalyzing() {
 
-    var data;
-
-    if (document.querySelector("#player").src == "https://www.youtube.com/embed/MeTQplAmuTU") {
-        data = {
-            url: "https://www.youtube.com/watch?v=MeTQplAmuTU",
+      var data = {
+            url: player.getVideoUrl(),
             token: localStorage.getItem('token')
         };
-    }
-    else {
-        data = {
-            token: localStorage.getItem('token'),
-            url: "https://www.youtube.com/watch?v=" + document.querySelector("#link").value
-        };
-    }
 
     socket.emit('startAnalyzingWirewax', {
         data: data
@@ -176,6 +166,13 @@ function setVideo() {
     document.querySelector("#player").src = "https://www.youtube.com/embed/" + document.querySelector("#link").value
 }
 
+function showTimestampOnVideo(data) {
+    //let time = parseInt(data['textKeywords'][49]['time']);
+    console.log("URL", player.getVideoUrl())
+    player.seekTo(2)
+
+}
+
 document.querySelector("#getIdButton").addEventListener('click', getIdList);
 document.querySelector("#faceButton").addEventListener('click', showFaceData);
 document.querySelector("#setButton").addEventListener('click', setVideo);
@@ -184,9 +181,3 @@ document.querySelector("#setIdButton").addEventListener('click', showResultID);
 document.querySelector("#toggleButton").addEventListener('click', () => {drawToggle = !drawToggle});
 window.addEventListener("load", startUp);
 window.addEventListener("load", setupCanvas);
-
-function showTimestampOnVideo(data) {
-    let time = parseInt(data['textKeywords'][49]['time']);
-    document.querySelector("#player").src = "https://www.youtube.com/embed/T84se4fc4KU?start=" + time;
-
-}

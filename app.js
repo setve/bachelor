@@ -163,7 +163,7 @@ io.on('connection', function (socket) {
                 else {
                     console.log("got normal result")
                     io.to(socket.id).emit('gotResult', {
-                        data: JSON.parse(body)
+                        data: body
                     })
                 }
             }
@@ -181,6 +181,12 @@ io.on('connection', function (socket) {
             },
 
             form: {
+                jobs: [
+                    "speech",
+                    "watermark",
+                    "identity",
+                    "text"
+                ],
                 url: data.data.url
             }
 
