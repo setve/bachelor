@@ -16,22 +16,29 @@ socket.on('connected', function () {
 socket.on('gotStatus', function (data) {
     var json = JSON.parse(data.data)
     var tekst = document.createElement("p")
-    tekst.innerHTML = JSON.stringify(json.status)
+    tekst.innerHTML = JSON.stringify(json.status).replace(/\"/g, "")
     document.querySelector("#json").appendChild(tekst)
 
 });
 
 socket.on('gotResult', function (data) {
     var json = JSON.parse(data.data)
+    var divElement = document.querySelector("#json")
+
+    while (divElement.firstChild) {
+        divElement.removeChild(divElement.firstChild);
+    }
 
     var text = document.createElement("p")
-    text.innerHTML = 'Example of result from the analyzes: '
-    document.querySelector("#json").appendChild(text)
+    text.innerHTML = 'Example of result from the analyzes: ';
+    divElement.appendChild(text)
+    var listElement = document.createElement('ul')
+    divElement.appendChild(listElement)
 
-    for (a = 0; a <= 10; a++) {
-        var text = document.createElement("p")
-        text.innerHTML = JSON.stringify(json.detections[a + 1].label);
-        document.querySelector("#json").appendChild(text)
+    for (a = 0; a <= 25; a++) {
+        var text = document.createElement("li")
+        text.innerHTML = JSON.stringify(json.detections[a + 1].label).replace(/\"/g, "");
+        listElement.appendChild(text)
     }
 
     var peopleArray = new Array(json.detections.length);
@@ -60,17 +67,18 @@ function searchPeople() {
 
         if (ele != null && ele.a.similar_to[0].name.toLowerCase().includes(searchResult)) {
             var text = document.createElement("p")
-            text.innerHTML = JSON.stringify('The video includes: ' + ele.a.similar_to[0].name)
+            text.innerHTML = JSON.stringify('The video includes: ' + ele.a.similar_to[0].name).replace(/\"/g, "")
             divElement.appendChild(text)
+            var listElement = document.createElement('ul')
+            divElement.appendChild(listElement)
 
             ele.occs.forEach(function (time) {
-                var textTime = document.createElement("p");
+                var textTime = document.createElement("li");
                 textTime.className = 'textTime'
                 textTime.onclick = skipTo;
-                textTime.innerHTML = JSON.stringify('In the time: ' + time.ss + 's')
+                textTime.innerHTML = JSON.stringify('In the time: ' + time.ss + 's').replace(/\"/g, "")
                 textTime.value = time.ss;
-                divElement.appendChild(textTime)
-                divElement.appendChild(document.createElement("br"))
+                listElement.appendChild(textTime)
 
             })
         }

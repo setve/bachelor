@@ -8,12 +8,13 @@ socket.on('retrievedInfo', function (data) {
     while (divElement.firstChild) {
         divElement.removeChild(divElement.firstChild);
     }
+    var listElement = document.createElement('ul')
+    divElement.appendChild(listElement)
     for (var obj in data.res) {
-        console.log(data.res[obj].class)
-        divElement.appendChild(document.createElement("p").appendChild(document.createTextNode("Tag: " + JSON.stringify(data.res[obj].class) + ", Score: " + JSON.stringify(data.res[obj].score))))
-        divElement.appendChild(document.createElement("br"))
+        var text = document.createElement("li")
+        text.innerHTML =JSON.stringify("Tag: " + data.res[obj].class + ",   Score: " + data.res[obj].score).replace(/\"/g, "")
+        listElement.appendChild(text)
     }
-
 });
 
 function getImageInfo(src) {

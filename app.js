@@ -351,7 +351,6 @@ io.on('connection', function (socket) {
     });
 
     socket.on('translate', function (data) {
-        console.log("kom inn i translate", data.src);
         translater(0, data.src, socket);
         var internalCounter = 0;
         timers[socket.id] = setInterval(() => {
