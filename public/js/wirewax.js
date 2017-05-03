@@ -21,28 +21,32 @@ socket.on('connected', function () {
 
 socket.on('gotResult', function (data) {
     var json = JSON.parse(data.data);
-    if(json['speechKeywords'] != null) {
+    if (json['speechKeywords'] != null) {
         var heading = document.createElement("h3");
         heading.innerHTML = "Speech keywords";
         document.querySelector("#json").appendChild(heading);
         let length = (json['speechKeywords']['length']);
-        for(let i=0;i<length;i++){
+        for (let i = 0; i < length; i++) {
             var text = document.createElement("li");
             text.innerHTML = json['speechKeywords'][i]['text'];
             text.onclick = showTimestampOnVideo(json['speechKeywords'][i]['time'])
             document.querySelector("#json").appendChild(text);
         }
     }
-    if(json['textKeywords'] != null){
+    if (json['textKeywords'] != null) {
         var heading = document.createElement("h3");
         heading.innerHTML = "Text keywords";
         document.querySelector("#json").appendChild(heading);
-        for(let i=0;i<length;i++){
+        for (let i = 0; i < length; i++) {
             var text = document.createElement("li");
             text.innerHTML = json['textKeywords'][i]['text'];
             text.onclick = showTimestampOnVideo(json['textKeywords'][i]['time'])
             document.querySelector("#json").appendChild(text);
         }
+    } else {
+        var tekst = document.createElement("p")
+        tekst.innerHTML = JSON.stringify(json)
+        document.querySelector("#json").appendChild(tekst)
     }
 });
 
@@ -143,28 +147,35 @@ function showResultID() {
 
     var id = document.querySelector("#id").value;
 
+    if (id) {
     socket.emit('showResultWirewax', {
         data: "http://hobnob.wirewax.com/public/video/" + id,
         token: localStorage.getItem("token")
-    })
+    })}
+    else {
+        alert("Please add the ID")
+    }
 }
 
 function showFaceData() {
 
     var id = document.querySelector("#faceId").value;
-
+    if (id) {
     socket.emit('showResultWirewax', {
         data: "http://hobnob.wirewax.com/video/" + id + "/faces",
         token: localStorage.getItem("token")
-    })
+    })}
+    else {
+        alert("Please add the ID")
+    }
 }
 
 function startAnalyzing() {
 
-      var data = {
-            url: player.getVideoUrl(),
-            token: localStorage.getItem('token')
-        };
+    var data = {
+        url: player.getVideoUrl(),
+        token: localStorage.getItem('token')
+    };
 
     socket.emit('startAnalyzingWirewax', {
         data: data
@@ -185,6 +196,8 @@ document.querySelector("#faceButton").addEventListener('click', showFaceData);
 document.querySelector("#setButton").addEventListener('click', setVideo);
 document.querySelector("#startButton").addEventListener('click', startAnalyzing);
 document.querySelector("#setIdButton").addEventListener('click', showResultID);
-document.querySelector("#toggleButton").addEventListener('click', () => {drawToggle = !drawToggle});
+document.querySelector("#toggleButton").addEventListener('click', () => {
+    drawToggle = !drawToggle
+});
 window.addEventListener("load", startUp);
 window.addEventListener("load", setupCanvas);
