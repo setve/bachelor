@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var ffmpeg = require('fluent-ffmpeg');
-var VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
+var watson = require('watson-developer-cloud');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var request = require('request')
 var values = require('./hardcodedValues')
@@ -28,7 +28,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(bodyParser.raw({type: 'audio/wav', limit: '50mb'}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -227,7 +226,7 @@ io.on('connection', function (socket) {
 
     })
 //Valossa code
-    //Code that has been commented out has been done so because the beta we used was shut down. The data used is taken from the Valossa API before it shut down
+    //Code that has been commented out has been done so because the beta we used was shut down. The data used is taken from the Valossa API beta before it shut down
     socket.on('getStatus', function (data) {
         io.to(socket.id).emit('gotStatus', {
             data: JSON.stringify(values.returnValues("getStatus"))
@@ -296,9 +295,10 @@ io.on('connection', function (socket) {
         xmlHttp.send();*/
     })
 //Watson image code
-    var visual_recognition = new VisualRecognitionV3({
-        api_key: '8feeacc50d39cc15387b88fc217995dac506f868',
-        version_date: '2016-05-19'
+    var visual_recognition = watson.visual_recognition({
+        api_key: "266ac4a34fd9a29bfbc5028bebdbd5c912c695d6",
+        version: 'v3',
+        version_date: '2016-05-20'
     });
 
     socket.on('getInfo', function (data) {

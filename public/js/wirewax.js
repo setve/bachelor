@@ -45,7 +45,7 @@ socket.on('gotResult', function (data) {
         }
     } else {
         var tekst = document.createElement("p")
-        tekst.innerHTML = JSON.stringify(json)
+        tekst.innerHTML = JSON.stringify(json).replace(/\"/g, "")
         document.querySelector("#json").appendChild(tekst)
     }
 });
@@ -196,8 +196,6 @@ document.querySelector("#faceButton").addEventListener('click', showFaceData);
 document.querySelector("#setButton").addEventListener('click', setVideo);
 document.querySelector("#startButton").addEventListener('click', startAnalyzing);
 document.querySelector("#setIdButton").addEventListener('click', showResultID);
-document.querySelector("#toggleButton").addEventListener('click', () => {
-    drawToggle = !drawToggle
-});
+document.querySelector("#toggleButton").addEventListener('click', () => { drawToggle = !drawToggle });
 window.addEventListener("load", startUp);
 window.addEventListener("load", setupCanvas);
