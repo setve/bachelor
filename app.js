@@ -151,7 +151,7 @@ io.on('connection', function (socket) {
 
         }, function (error, response, body) {
             if (error) {
-                console.log("Error", error)
+                console.log("Error", error, body, response)
             } else {
                 console.log(response.statusCode, body)
                 if (data.data.includes("/faces")) {
@@ -307,8 +307,9 @@ io.on('connection', function (socket) {
         };
 
         visual_recognition.classify(params, function (err, res) {
-            if (err)
+            if (err) {
                 console.log(err);
+            }
             else {
                 io.to(socket.id).emit('retrievedInfo', {
                     res: res.images[0].classifiers[0].classes

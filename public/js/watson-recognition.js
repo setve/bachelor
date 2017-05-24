@@ -31,11 +31,17 @@ function readURL(input) {
         reader.onload = function (e) {
             $('#image4')
                 .attr('src', e.target.result)
+                //.attr('onclick', getImageInfo(e.target.result))
             socket.emit('getInfoFile', {
                 data: input.files[0]
             })
         };
         reader.readAsDataURL(input.files[0]);
+        document.querySelector('#image4').addEventListener('click', function () {
+            socket.emit('getInfoFile', {
+                data: input.files[0]
+            })
+        });
     }
 }
 

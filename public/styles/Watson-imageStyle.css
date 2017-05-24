@@ -6,6 +6,10 @@
     cursor: pointer;
 }
 
+ul {
+    list-style: none;
+}
+
 #text {
     width: auto;
     text-align: center;

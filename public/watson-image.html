@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Watson image test</title>
-    <link rel="stylesheet" type="text/css" href="styles/Watson-imageStyle.css"/>
+    <script src="js/socket.io.js"></script>
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="js/watson-recognition.js"></script>
-    <script src="js/socket.io.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/Watson-imageStyle.css"/>
 </head>
 <body>
 <header class="main-header">
@@ -24,9 +23,6 @@
     <div id ="text"></div>
     <input id="imageInput" type='file' onchange="readURL(this);" />
 </div>
-
-
-
-
+<script type="text/javascript" src="js/watson-recognition.js"></script>
 </body>
 </html>
