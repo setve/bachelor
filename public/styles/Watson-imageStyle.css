@@ -10,9 +10,20 @@ ul {
     list-style: none;
 }
 
+#imageTags {
+    float: right;
+    width: 48%;
+    height: 550px;
+    margin: 20px 2% 20px 1%;
+}
+
 #text {
     width: auto;
     text-align: center;
+}
+
+#imageInput {
+    float: left;
 }
 
 img {
